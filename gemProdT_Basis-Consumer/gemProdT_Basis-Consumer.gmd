@@ -7,7 +7,7 @@ Prüfvorschrift
 Basis-Consumer
 
 |------------------------------|
-|Produkttyp Version|1.6.2-0    |
+|Produkttyp Version|1.6.2-1    |
 |------------------|-----------|
 |Produkttyp Status |freigegeben|
 |------------------------------|
@@ -15,15 +15,15 @@ Basis-Consumer
 |---------------------------------------------------|
 |Version        |1.0.0                              |
 |---------------|-----------------------------------|
-|Revision       |548770                             |
+|Revision       |553485                             |
 |---------------|-----------------------------------|
-|Stand          |21.09.2022                         |
+|Stand          |13.01.2023                         |
 |---------------|-----------------------------------|
 |Status         |freigegeben                        |
 |---------------|-----------------------------------|
 |Klassifizierung|öffentlich                         |
 |---------------|-----------------------------------|
-|Referenzierung |gemProdT_Basis-Consumer_PTV_1.6.2-0|
+|Referenzierung |gemProdT_Basis-Consumer_PTV_1.6.2-1|
 |---------------------------------------------------|
 
 ## Historie Produkttypversion und Produkttypsteckbrief
@@ -61,6 +61,8 @@ durch Produktentwicklungen ebenfalls betroffen ist.
 |1.6.1-0             |Anpassung durch Consumer_Maintenance_22.1           |gemProdT_Basis-Consumer_PTV1.6.1-0           |
 |--------------------|----------------------------------------------------|---------------------------------------------|
 |1.6.2-0             |Anpassung durch KIM 1.5.2-1                         |gemProdT_Basis-Consumer_PTV1.6.2-0           |
+|--------------------|----------------------------------------------------|---------------------------------------------|
+|1.6.2-1             |Anpassung durch KIM 1.5.2-2                         |gemProdT_Basis-Consumer_PTV1.6.2-1           |
 |=======================================================================================================================|
 
 Historie Produkttypsteckbrief
@@ -72,7 +74,7 @@ Produkttypversion.
 |=========================================================================================================================|
 |Version       |Stand         |Kap.     |Grund der Änderung, besondere Hinweise                        |Bearbeiter        |
 |==============|==============|=========|==============================================================|==================|
-|1.0.0         |19.09.22      |         |freigegeben                                                   |gematik           |
+|1.0.0         |13.01.2023    |         |freigegeben                                                   |gematik           |
 |=========================================================================================================================|
 
 ## Inhaltsverzeichnis
@@ -137,7 +139,7 @@ Quelle (Referenz): Verweist auf das Dokument, das die normative Festlegung defin
 
 Die nachfolgenden Dokumente enthalten alle für den Produkttyp normativen Festlegungen.
 
-Tabelle 1: Dokumente mit Festlegungen zu der Produkttypversion
+Tabelle 1: Dokumente mit normativen Festlegungen
 
 |========================================================================================================================================|
 |Dokumentenkürzel            |Bezeichnung des Dokumentes                                                                         |Version|
@@ -148,19 +150,19 @@ Tabelle 1: Dokumente mit Festlegungen zu der Produkttypversion
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
 |[gemSpec_Basis_KTR_Consumer]|Spezifikation Basis-/KTR-Consumer                                                                  |1.5.0  |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
-|[gemSpec_CM_KOMLE]          |Spezifikation KOM-LE-Clientmodul                                                                   |1.14.0 |
+|[gemSpec_CM_KOMLE]          |Spezifikation KOM-LE-Clientmodul                                                                   |1.15.0 |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
 |[gemSpec_DS_Hersteller]     |Spezifikation Datenschutz- und Sicherheitsanforderungen der TI an Hersteller                       |1.3.0  |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
 |[gemSpec_HSMProxy]          |Übergreifende Spezifikation HSM-Proxy                                                              |1.0.0  |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
-|[gemSpec_Krypt]             |Übergreifende Spezifikation Verwendung kryptographischer Algorithmen in der Telematikinfrastruktur |2.23.0 |
+|[gemSpec_Krypt]             |Übergreifende Spezifikation Verwendung kryptographischer Algorithmen in der Telematikinfrastruktur |2.24.0 |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
-|[gemSpec_Net]               |Übergreifende Spezifikation Netzwerk                                                               |1.22.0 |
+|[gemSpec_Net]               |Übergreifende Spezifikation Netzwerk                                                               |1.23.0 |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
-|[gemSpec_OM]                |Übergreifende Spezifikation Operations und Maintenance                                             |1.14.0 |
+|[gemSpec_OM]                |Übergreifende Spezifikation Operations und Maintenance                                             |1.14.1 |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
-|[gemSpec_PKI]               |Übergreifende Spezifikation – Spezifikation PKI                                                    |2.13.0 |
+|[gemSpec_PKI]               |Übergreifende Spezifikation – Spezifikation PKI                                                    |2.14.1 |
 |----------------------------|---------------------------------------------------------------------------------------------------|-------|
 |[gemSpec_Systemprozesse_dezT|Spezifikation Systemprozesse der dezentralen TI                                                    |1.3.1  |
 |I]                          |                                                                                                   |       |
@@ -314,8 +316,6 @@ Tabelle 3: Festlegungen zur funktionalen Eignung "Produkttest/Produktübergreife
 |[A_22348]       |Caching der Prüfergebnisse der TLS-Server-Zertifikate                                                                                                    |gemSpec_CM_KOMLE          |
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
 |[A_23165]       |Verhalten bei fehlgeschlagener Integritätsprüfung                                                                                                        |gemSpec_CM_KOMLE          |
-|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
-|[A_23169]       |Sicherstellung der Absenderintegrität                                                                                                                    |gemSpec_CM_KOMLE          |
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
 |[A_23174]       |Sicherstellung der Empfängeradressen                                                                                                                     |gemSpec_CM_KOMLE          |
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
@@ -1203,7 +1203,9 @@ bezieht sich auch auf Ausprägungen A_12345-XX (Wertebereich XX = 01 - NN) in Ka
 
 ## 5.2 Tabellenverzeichnis
 
-### ML-134239 - gemProdT_Basis-Consumer_PTV_1.6.2-0 (nicht definiert)
+ML-136479
+
+### ML-136479 - gemProdT_Basis-Consumer_PTV_1.6.2-1 (nicht definiert)
 
 [<=]
 
