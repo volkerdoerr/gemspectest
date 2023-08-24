@@ -5,11 +5,11 @@ Spezifikation
 KOM-LE-Clientmodul
 
 |--------------------------------|
-|Version        |1.15.0          |
+|Version        |1.16.0          |
 |---------------|----------------|
-|Revision       |553484          |
+|Revision       |621275          |
 |---------------|----------------|
-|Stand          |13.01.2023      |
+|Stand          |24.04.2023      |
 |---------------|----------------|
 |Status         |freigegeben     |
 |---------------|----------------|
@@ -78,6 +78,9 @@ Dokumentenhistorie
 |-------------|--------------|-------------|-----------------------------------------------------------|-----------------|
 |1.15.0       |13.01.23      |             |Anpassungen gemäß Änderungsliste KIM_Maintenance_22.3 - KIM|gematik          |
 |             |              |             |1.5.2-2                                                    |                 |
+|-------------|--------------|-------------|-----------------------------------------------------------|-----------------|
+|1.16.0       |24.04.23      |             |Anpassungen gemäß Änderungsliste KIM_Maintenance_22.3 - KIM|gematik          |
+|             |              |             |1.5.2-3                                                    |                 |
 |========================================================================================================================|
 
 ## Inhaltsverzeichnis
@@ -224,6 +227,8 @@ Zugleich kann über das Administrationsmodul das benötigte Clientzertifikat (PK
 
 ![img](8394815406201974864.png]
 
+Abbildung 4: Administrationsmodul für die Kommunikation mit dem Account Manager
+
 Der Funktionsumfang des Clientmodules kann optional in das Clientsystem integriert werden. Somit ist kein separates
 Clientmodul mehr notwendig.
 
@@ -318,8 +323,9 @@ verwenden ist. Bei Nutzung eines Clientmodules in der KOM-LE-Version 1.0 ist ein
 über die KOM-LE-1.5-Schnittstelle am KOM-LE-Fachdienst nicht möglich.
 
 Die Übermittlung der KOM-LE-Version vom Anbieter kann hierbei in geeigneter Form erfolgen. Die jeweilige Client-Version
-kann aus dem LDAP-Directory Attribut: komLeData vom VZD entnommen werden. Geltende KOM-LE-Versionen sind 1.0 und 1.5 und
-werden in der Form in das Header-Element X-KOM-LE-Version eingetragen.
+kann aus dem LDAP-Directory Attribut: komLeData vom VZD entnommen werden. Gültige KOM-LE-Versionen sind 1.0 und 1.5 und
+werden in der Form in das Header-Element X-KOM-LE-Version eingetragen. Ab der KOM-LE-Version 1.5 kann die Version mit
+einem "+" erweitert werden. Das "+" dient zur Erkennung, ob große KIM-Nachrichten empfangen werden können.
 
 ### A_20650-05 - Übermittlung von Fehlernachrichten (MUSS)
 
@@ -378,6 +384,9 @@ Tabelle #: Tab_Fehlercodes_KOMLE-Clientmodule
 |Die Prüfung der Signatur der Nachricht hat ergeben, dass die Nachricht manipuliert  |4015                              |
 |wurde, um einem anderen Nutzer das Entschlüsseln der Nachricht mit einem Schlüssel, |                                  |
 |der nicht in seinem Besitz ist, zu ermöglichen.                                     |                                  |
+|------------------------------------------------------------------------------------|----------------------------------|
+|Die Auswertung der KOM-LE-Version bei Nachrichten mit KAS-Content hat ergeben, dass |4018                              |
+|die Größe der Nachricht nicht den festgelegten Account-Einstellungen entspricht.    |                                  |
 |-----------------------------------------------------------------------------------------------------------------------|
 |Sonstige Fehlermeldungen                                                                                               |
 |------------------------------------------------------------------------------------|----------------------------------|
@@ -485,21 +494,11 @@ Operation I_AccountLimit_Service::getLimits) prüfen. Im Fehlerfall wird dem KO
 zurückgegeben.<br>
 [<=]
 
-### A_19356-05 - Prüfen der Version des Empfängers (MUSS)
+### A_23467 - Übermittlung der KAS-Datenmenge (MUSS)
 
-Das KOM-LE-Clientmodul MUSS die vom Empfänger verwendete KOM-LE-Version prüfen. Das KOM-LE-Clientmodul MUSS dazu die
-KOM-LE-Version mittels des LDAP-Directory Attributs: komLeData aus dem Verzeichnisdienst [gemSpec_VZD#5] abfragen. Ist
-das LDAP-Directory Attribut: komLeData für den Empfänger undefiniert, dann muss ein KOM-LE-Clientmodul mit einer Version
-1.0 angenommen werden.<br>
-<br>
-Wenn eine Client-Mail größer als 15 MiB an einen Empfänger mit KOM-LE-Version < 1.5 versendet werden soll, MUSS das KOM-
-LE-Clientmodul diesen Empfänger aus der Mail entfernen. Beim Entfernen eines Empfängers MUSS das KOM-LE-Clientmodul den
-Absender mit einer E-Mail über den Fehlerfall informieren. Aus dem Inhalt der Fehlernachricht müssen alle aus der Mail
-entfernten Empfänger hervorgehen. Die Fehlernachricht ist weder zu signieren noch zu verschlüsseln und entspricht der
-Delivery Status Notification gemäß [RFC3461-3464]. Kann die Mail für keinen der Empfänger versendet werden, wird das
-Senden der Nachricht abgebrochen. Dabei wird dem MTA das RSET-Kommando gesendet und das Clientsystem wird mit dem SMTP-
-Antwortcode "451" über den Fehlerfall informiert.<br>
-[<=]
+Das KOM-LE-Clientmodul MUSS bei der Übertragung der KOM-LE-Nachricht an den Fachdienst, die im Kontext KAS verarbeitet
+wurde, ein Mail-Header-Attribut X-KIM-KAS-Size mit dem Wert befüllen, der dem Attribut size in der KIM-Attachment-
+Datenstruktur entspricht. [<=]
 
 ### A_22340 - Cachen vom KOM-LE-Versionen (KANN)
 
@@ -705,9 +704,48 @@ Das KOM-LE-Clientmodul MUSS bei der Übertragung der E-Mail-Daten das HTTP-Heade
 Gesamt-Länge des Request-Bodys befüllen.<br>
 [<=]
 
+### A_19356-06 - Prüfen der Version des Empfängers (MUSS)
+
+Das KOM-LE-Clientmodul MUSS die vom Empfänger verwendete KOM-LE-Version prüfen. Das KOM-LE-Clientmodul MUSS dazu die
+KOM-LE-Version des Empfängers mittels des LDAP-Directory Attributs: komLeData aus dem Verzeichnisdienst [gemSpec_VZD#5]
+abfragen. Ist das LDAP-Directory Attribut: komLeData für den Empfänger undefiniert, dann muss ein KOM-LE-Clientmodul mit
+einer Version 1.0 angenommen werden.<br>
+Wenn eine Client-Mail größer als 15 MiB versendet werden soll, dann MUSS für jeden Empfänger durch Abfrage des Eintrags
+im Verzeichnisdienst geprüft werden, ob die KOM-LE-Version des Empfängers mit einem + (zum Beispiel Wert: 1.5+)
+erweitert wurde. Wenn die KOM-LE-Version des Empfängers nicht mit einem + (zum Beispiel Wert: 1.5+) erweitert wurde,
+MUSS das KOM-LE-Clientmodul diesen Empfänger aus der Mail entfernen. Beim Entfernen eines Empfängers MUSS das KOM-LE-
+Clientmodul den Absender mit einer E-Mail über den Fehlerfall informieren. Aus dem Inhalt der Fehlernachricht müssen
+alle aus der Mail entfernten Empfänger hervorgehen. Die Fehlernachricht ist weder zu signieren noch zu verschlüsseln und
+entspricht der Delivery Status Notification gemäß [RFC3461-3464]. Kann die Mail für keinen der Empfänger versendet
+werden, wird das Senden der Nachricht abgebrochen. Dabei wird dem MTA das RSET-Kommando gesendet und das Clientsystem
+wird mit dem SMTP-Antwortcode "451" über den Fehlerfall informiert.<br>
+[<=]
+
 ## 3.2.2 Empfangen von großen Client-Mails
 
 In diesem Kapitel werden Anforderungen an das Clientmodul formuliert, die es erlauben, große Client-Mails zu empfangen.
+
+### A_23512 - Auswertung der KOM-LE-Version bei Nachrichten mit KAS-Content (MUSS)
+
+Das Clientmodul MUSS beim Empfang einer KOM-LE-Nachricht mit einer KIM-Attachment-Datenstruktur prüfen, ob für den
+Empfänger eine Freigabe zum Empfang großer Nachrichten vorliegt. Ist dies nicht der Fall, MUSS das Clientmodul die
+Weiterverarbeitung der Nachricht und damit dem Abruf der KAS-Daten unterbinden. Das Clientmodul MUSS in diesem Fall eine
+Fehlernachricht an den Empfänger erzeugen. Als Fehlernachricht MUSS eine multipart/mixed MIME-Nachricht an das
+Clientsystem übermittelt werden, welche die verschlüsselte KOM-LE-S/MIME-Nachricht als eine message/rfc822 MIME-Einheit
+beinhaltet. So kann, nach Anpassung der KOM-LE-Version, die Nachricht an den Empfänger weitergeleitet und erneut
+abgerufen werden. Zusätzlich muss diese multipart/mixed MIME-Nachricht eine text/plain MIME-Einheit mit geeignetem
+Fehlertext enthalten. Die orig-date, from, sender, reply-to, to und cc Header-Elemente der neuen multipart/mixed
+Nachricht werden aus der empfangenen KOM-LE-S/MIME-Nachricht übernommen. Das subject Header-Element der neuen
+multipart/mixed Nachricht erhält den Wert „Die KIM-Nachricht kann nicht empfangen werden, weil der Empfang großer
+Nachrichten nicht aktiviert wurde“. Im Fehlertext der Nachricht muss der Empfänger darauf hingewiesen werden, dass eine
+Nachricht empfangen wurde, die aufgrund deren Größe gemäß der Account-Einstellung (KOM-LE-Version) nicht verarbeitet
+werden darf. Das Header-Element X-KIM-Fehlermeldung MUSS den Fehlercode 4018 enthalten. Es MUSS darauf hingewiesen
+werden, wie entsprechende Konfigurationen über den Account-Manager angepasst werden können und wie der Empfänger den
+Empfang durch Weiterleitung der Fehlernachricht wiederholen kann. [<=]
+
+Hinweis: Die Prüfung durch das CM des Empfängers erfolgt, indem das CM prüft ob die empfangene Mail den Header X-KIM-
+KAS-Size enthält und einen Wert größer 15MiB hat. Wenn das zutrifft, dann muss im VZD Eintrag des Empfängers eine
+Freigabe zum Empfang großer KIM-Nachrichten vorhanden sein.
 
 ### A_19367 - Empfangen der Nachricht (MUSS)
 
@@ -3253,6 +3291,18 @@ Fehlernachrichten darstellen.<br>
 Das Clientmodul MUSS es dem Nutzer ermöglichen, Abwesenheitsnotizen über die Schnittstelle I_AccountManager_Service am
 Account Manager verwalten zu können.<br>
 [<=]
+
+### A_23505 - Bereitschaft zum Empfang großer Nachrichten (MUSS)
+
+Das Clientmodul MUSS es dem Nutzer ermöglichen, die optionale Bereitschaft zum Empfang großer Nachrichten über die
+Schnittstelle I_AccountManager_Service am Account Manager verwalten zu können. Die Bereitschaft zum Empfang großer
+Nachrichten MUSS über die KOM-LE-Version, ergänzt durch ein +, eingetragen werden. Erkennt das Clientmodul die
+beabsichtigte Bereitschaft zum Empfang großer Nachrichten, MUSS es den Nutzer hinsichtlich der sich daraus ergebenden
+Risiken beim Senden und Empfangen von großen Dateien informieren. Dass Clientmodul MUSS es dem Nutzer ermöglichen, die
+erteilte Bereitschaft zurückzusetzen. [<=]
+
+Hinweis: Wird durch das Clientmodul die KOM-LE-Version auch für die Sender in einem lokalen Cache hinterlegt, ist eine
+Aktualisierung jeweils nach einer Änderung erforderlich.
 
 ## 3.7.2 Registrierung KOM-LE-Teilnehmer
 
