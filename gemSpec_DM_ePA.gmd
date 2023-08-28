@@ -3,11 +3,11 @@ Elektronische Gesundheitskarte und Telematikinfrastruktur
 Datenmodell ePA
 
 |------------------------------|
-|Version        |1.53.0        |
+|Version        |1.53.1        |
 |---------------|--------------|
-|Revision       |614192        |
+|Revision       |665983        |
 |---------------|--------------|
-|Stand          |31.03.2023    |
+|Stand          |26.05.2023    |
 |---------------|--------------|
 |Status         |freigegeben   |
 |---------------|--------------|
@@ -67,6 +67,9 @@ Dokumentenhistorie
 |1.52.0  |01.12.22    |           |Einarbeitung Änderungsliste ePA_Maintenance_22.3                   |gematik            |
 |--------|------------|-----------|-------------------------------------------------------------------|-------------------|
 |1.53.0  |31.03.23    |           |Einarbeitung Änderungsliste ePA_Maintenance_23.1                   |gematik            |
+|--------|------------|-----------|-------------------------------------------------------------------|-------------------|
+|1.53.1  |26.05.23    |           |Anpassung zu ePA-Release 2.6.0 (editorische Anpassung von A_14762- |gematik            |
+|        |            |           |03 und A_14505-09)                                                 |                   |
 |=========================================================================================================================|
 
 ## Inhaltsverzeichnis
@@ -426,7 +429,7 @@ Tabelle 1: Nutzungsvorgaben für Metadatenattribute XDS
 |                    |1]   |1]  |0]   |1]   |Dokuments            |verwendet werden:<br>application/pdf (pdf)<br>       |    |
 |                    |     |    |     |     |                     |image/jpeg (jpeg oder jpg)<br>image/png (png)<br>    |    |
 |                    |     |    |     |     |                     |image/tiff (tiff)<br>text/plain (txt)<br>text/rtf    |    |
-|                    |     |    |     |     |                     |(rft)<br>application/xml (xml)<br>application/hl7-v3 |    |
+|                    |     |    |     |     |                     |(rtf)<br>application/xml (xml)<br>application/hl7-v3 |    |
 |                    |     |    |     |     |                     |(xml)<br>application/pkcs7-mime (p7)<br>             |    |
 |                    |     |    |     |     |                     |application/fhir+xml (xml)<br>application/json (json)|    |
 |                    |     |    |     |     |                     |<br><br>Sofern das zu beschreibende Dokument ein     |    |
@@ -1316,7 +1319,7 @@ Leistungserbringer als Autor
    11. Titel
    12. "^^^&" - sofern LANR oder ZANR angegeben, ansonsten "^^^"
    13. "1.2.276.0.76.4.16" - sofern LANR angegeben oder "1.2.276.0.76.4.296", falls ZANR angegeben
-   14. "&ISO" - sofern LANR angegeben
+   14. "&ISO" - sofern LANR oder ZANR angegeben
 
 Beispiele:
 
@@ -1829,10 +1832,9 @@ Tabelle 9 : Event Codes für Protokollereignisse
 |                                                                         |              |Umgebung                       |
 |-------------------------------------------------------------------------|--------------|-------------------------------|
 |I_Document_Management::RemoveDocuments                                   |PHR-530       |Löschen eines Dokuments aus    |
-|                                                                         |              |der ärztlichen Umgebung.<br>   |
-|                                                                         |              |<br>Hinweis (nicht             |
-|                                                                         |              |protokolliert): in ePA2.0      |
-|                                                                         |              |entfallen                      |
+|                                                                         |              |der ärztlichen Umgebung<br><br>|
+|                                                                         |              |Hinweis (nicht protokolliert): |
+|                                                                         |              |in ePA2.0 entfallen            |
 |-------------------------------------------------------------------------|--------------|-------------------------------|
 |I_Document_Management::CrossGatewayRetrieve                              |PHR-540       |Abruf eines Dokuments aus      |
 |                                                                         |              |der ärztlichen Umgebung        |
@@ -1870,7 +1872,7 @@ Tabelle 9 : Event Codes für Protokollereignisse
 |                                                                         |              |TelematikID bzw. KVNR.         |
 |-------------------------------------------------------------------------|--------------|-------------------------------|
 |I_Document_Management_Insurant::RemoveDocuments                          |PHR-630       |Löschen eines Dokuments aus    |
-|                                                                         |              |der privaten Umgebung. <br><br>|
+|                                                                         |              |der privaten Umgebung <br><br> |
 |                                                                         |              |Hinweis (nicht protokolliert): |
 |                                                                         |              |in ePA2.0 entfallen            |
 |-------------------------------------------------------------------------|--------------|-------------------------------|
@@ -1912,7 +1914,7 @@ Tabelle 9 : Event Codes für Protokollereignisse
 |Interner Prozess: Rollback während des Umschlüsselungsvorgangs in        |PHR-850       |Initialer Schritt zum Abbruch  |
 |Komponente Authorisierung                                                |              |des Umschlüsselungsvorgangs    |
 |                                                                         |              |(Wiederherstellung des alten   |
-|                                                                         |              |Schlüsselmaterial              |
+|                                                                         |              |Schlüsselmaterials)            |
 |========================================================================================================================|
 
 ||
