@@ -3,11 +3,11 @@ Elektronische Gesundheitskarte und Telematikinfrastruktur
 Datenmodell ePA
 
 |------------------------------|
-|Version        |1.51.1        |
+|Version        |1.52.0        |
 |---------------|--------------|
 |Revision       |548770        |
 |---------------|--------------|
-|Stand          |17.08.2022    |
+|Stand          |01.12.2022    |
 |---------------|--------------|
 |Status         |freigegeben   |
 |---------------|--------------|
@@ -63,6 +63,8 @@ Dokumentenhistorie
 |--------|------------|-----------|-------------------------------------------------------------------|-------------------|
 |1.51.1  |17.08.22    |           |Anpassung zur Einarbeitung Änderungsliste ePA_Maintenance_22.2 nach|gematik            |
 |        |            |           |weiteren Abstimmungen                                              |                   |
+|--------|------------|-----------|-------------------------------------------------------------------|-------------------|
+|1.52.0  |01.12.22    |           |Einarbeitung Änderungsliste ePA_Maintenance_22.3                   |gematik            |
 |=========================================================================================================================|
 
 ## Inhaltsverzeichnis
@@ -240,7 +242,7 @@ Die Spalten der unten dargestellten, tabellarischen Übersichten für die Metada
      Workflow relevanten Metadatenattribute angezeigt werden, um die Komplexität für den Versicherten gering zu halten.
      Veränderbar gestaltete Metadatenattribute müssen mit sinnvollen Default-Werten vor belegt werden.
 
-### A_14760-18 - Nutzungsvorgaben für die Verwendung von XDS-Metadaten (MUSS)
+### A_14760-19 - Nutzungsvorgaben für die Verwendung von XDS-Metadaten (MUSS)
 
 Das Primärsystem, das ePA-Frontend des Versicherten sowie das Fachmodul ePA KTR-Consumer als XDS-Akteur "Document
 Source" MÜSSEN zur Registrierung von Dokumenten in der ePA-Dokumentenverwaltung die nachstehenden Nutzungsvorgaben für
@@ -322,20 +324,20 @@ Tabelle 1: Nutzungsvorgaben für Metadatenattribute XDS
 |                    |     |    |     |     |                     |mit dem Code System Name "ePA-Vertraulichkeit"       |    |
 |                    |     |    |     |     |                     |definiert.<br>Es MUSS für die gewünschte             |    |
 |                    |     |    |     |     |                     |Vertraulichkeitsstufe des Dokumentes einer der Codes |    |
-|                    |     |    |     |     |                     |Code = "N", Display Name = "normal",         Code =  |    |
-|                    |     |    |     |     |                     |"R", Display Name = "vertraulich" oder         Code =|    |
-|                    |     |    |     |     |                     |"V", Display Name = "streng vertraulich" aus dem Code|    |
-|                    |     |    |     |     |                     |System 2.16.840.1.113883.5.25 (siehe auch            |    |
+|                    |     |    |     |     |                     |Code = "N", Display Name = "normal",          Code = |    |
+|                    |     |    |     |     |                     |"R", Display Name = "vertraulich" oder          Code |    |
+|                    |     |    |     |     |                     |= "V", Display Name = "streng vertraulich"  aus dem  |    |
+|                    |     |    |     |     |                     |Code System 2.16.840.1.113883.5.25 (siehe auch       |    |
 |                    |     |    |     |     |                     |[gemSpec_Voc_ePA]) gesetzt werden.<br><br>Nur noch   |    |
 |                    |     |    |     |     |                     |von ePA1-Clientsystemen während der Migration von    |    |
 |                    |     |    |     |     |                     |ePA1 zu ePA2 zu verwenden sind:<br> Code = "LEI",    |    |
 |                    |     |    |     |     |                     |Display Name = "Dokument einer                       |    |
-|                    |     |    |     |     |                     |Leistungserbringerinstitution"<br>         Code =    |    |
+|                    |     |    |     |     |                     |Leistungserbringerinstitution"<br>          Code =   |    |
 |                    |     |    |     |     |                     |"KTR", Display Name = "Dokument eines Kostenträgers" |    |
-|                    |     |    |     |     |                     |<br>         Code = "PAT", Display Name = "Dokument  |    |
-|                    |     |    |     |     |                     |eines Versicherten"<br>         Code = "LEÄ", Display|    |
-|                    |     |    |     |     |                     |Name="Leistungserbringeräquivalentes Dokument eines  |    |
-|                    |     |    |     |     |                     |Versicherten oder Kostenträgers" Während der         |    |
+|                    |     |    |     |     |                     |<br>          Code = "PAT", Display Name = "Dokument |    |
+|                    |     |    |     |     |                     |eines Versicherten"<br>          Code = "LEÄ",       |    |
+|                    |     |    |     |     |                     |Display Name="Leistungserbringeräquivalentes Dokument|    |
+|                    |     |    |     |     |                     |eines Versicherten oder Kostenträgers"  Während der  |    |
 |                    |     |    |     |     |                     |Migration von ePA1 zu ePA2 werden die vorgenannten   |    |
 |                    |     |    |     |     |                     |ConfidentialityCodes gemäß                           |    |
 |                    |     |    |     |     |                     |[gemSpec_Dokumentenverwaltung#5.4.3] auf             |    |
@@ -487,7 +489,14 @@ Tabelle 1: Nutzungsvorgaben für Metadatenattribute XDS
 |                    |     |    |     |     |Quellsystem          |                                                     |    |
 |--------------------|-----|----|-----|-----|---------------------|-----------------------------------------------------|----|
 |title               |[0.. |[1..|[0.. |[0.. |Titel des Dokuments  |Der Wert MUSS den Formatvorgaben  aus [IHE-ITI-TF3#4.|X   |
-|                    |1]   |1]  |0]   |1]   |                     |2.3.2.24] genügen.                                   |    |
+|                    |1]   |1]  |1]   |1]   |                     |2.3.2.24] genügen.<br>„Falls ein Client ein Dokument |    |
+|                    |     |    |     |     |                     |einstellt, ohne documentEntry.title befüllt zu haben |    |
+|                    |     |    |     |     |                     |MUSS die Komponente ePA-Dokumentenverwaltung         |    |
+|                    |     |    |     |     |                     |documentEntry.title mit dem auf den reinen Dateinamen|    |
+|                    |     |    |     |     |                     |reduzierten Wert von documentEntry.URI (d.h. ohne    |    |
+|                    |     |    |     |     |                     |Pfadangaben) befüllen. Ein Leerstring documentEntry. |    |
+|                    |     |    |     |     |                     |title="" ist gleichbedeutend mit einem nicht         |    |
+|                    |     |    |     |     |                     |vorhandenen Titel.                                   |    |
 |--------------------|-----|----|-----|-----|---------------------|-----------------------------------------------------|----|
 |typeCode            |[1.. |[1..|[0.. |[1.. |Art des Dokuments    |Der Wert MUSS einem Code des in [gemSpec_Voc_ePA]    |X   |
 |                    |1]   |1]  |0]   |1]   |                     |definierten Value Sets für DocumentEntry.typeCode    |    |
@@ -1041,16 +1050,39 @@ Tabelle 3: Nutzungsvorgaben für Metadatenattribute bei Policy Documents
 
 ## 2.1.4.3 Weitere Metadatenvorgaben
 
-### A_19388-14 - Nutzungsvorgaben für die Verwendung von Dokumentenkategorien (MUSS)
+### A_19388-15 - Nutzungsvorgaben für die Verwendung von Dokumentenkategorien (MUSS)
 
 Die ePA-Dokumentenverwaltung MUSS beim Einstellen eines Dokuments (ausgenommen Policy-Dokumente) die folgende Zuordnung
 zu einer Dokumentenkategorie (d.h. Assoziierung mit einem bestimmten Folder) vornehmen. Dabei haben Auswertungs- und
 Zuordnungsregeln, die sich aus A_14761-* und damit verbunden aus [gemSpec_IG_ePA] ableiten immer den Vorrang gegenüber
 anderen Auswertungsregeln. Ferner MUSS die ePA-Dokumentenverwaltung sicherstellen, dass bei einer Aktualisierung eines
 Dokuments derselbe Ordner des zu ersetzenden Dokuments zugeordnet wird. Die Zugriffsunterbindungsregeln gemäß A_19303-*
-müssen bei der Zuordnung generell durchgesetzt werden.
+müssen bei der Zuordnung generell durchgesetzt werden.<br>
+<br>
+Für eine eindeutige Zuordnung zu einer Dokumentenkategorie MUSS die Auswertung der Metadatenvorgaben in der folgend
+dargestellten Kategoriereihenfolge erfolgen:
 
-Tabelle 4: Tab_DM_Dokumentenkategorien
+Tabelle 4: Tab_DM_Auswertungsreihenfolge_Metadatenvorgaben
+
+|=======================================================================================================================|
+|Reihenfolge                  |Dokumentenkategorie                                                                      |
+|=============================|=========================================================================================|
+|1.                           |8 (receipt)                                                                              |
+|-----------------------------|-----------------------------------------------------------------------------------------|
+|2.                           |7 (ega),                                                                                 |
+|-----------------------------|-----------------------------------------------------------------------------------------|
+|3.                           |6 (patientdoc),                                                                          |
+|-----------------------------|-----------------------------------------------------------------------------------------|
+|4.                           |4 (mothersrecord)                                                                        |
+|-----------------------------|-----------------------------------------------------------------------------------------|
+|5.                           |1d (Arztbrief)                                                                           |
+|-----------------------------|-----------------------------------------------------------------------------------------|
+|6.                           |10 (care)                                                                                |
+|-----------------------------|-----------------------------------------------------------------------------------------|
+|7.                           |alle weiteren                                                                            |
+|=======================================================================================================================|
+
+Tabelle 5: Tab_DM_Dokumentenkategorien
 
 |========================================================================================================================|
 |Nr.    |Dokumentenkategorie               |Technischer Identifier |Metadatenvorgaben                                    |
@@ -1234,6 +1266,14 @@ Beispiel für die Ermittlung der Dokumentengröße:
    2. Base64 Dekodierung des Ergebnisses aus 1.
    3. Von der Länge des Ergebnisses aus 2. ziehe die Länge 12 Bytes und des Authentication Tags von 16 Bytes gemäß
       A_14977-* ab.
+
+### A_23369 - Dokumententitel verpflichtend für Client (MUSS)
+
+Das Primärsystem, das ePA-Frontend des Versicherten sowie das Fachmodul ePA KTR-Consumer MÜSSEN beim Einstellen eines
+Dokuments DocumentEntry.title befüllen. [<=]
+
+Falls möglich soll der Titel des Dokumentes eine fachliche Beschreibung des Dokumentes enthalten. Ein Leerstring
+DocumentEntry.title="" ist nicht erlaubt.
 
 ## 2.1.4.3.1 authorPerson (DocumentEntry.author und SubmissionSet.author)
 
@@ -1474,7 +1514,7 @@ Fachanwendung dem Kostenträger, Dokumente dieser Art entsprechend zu kennzeichn
 Das ePA-Fachmodul KTR-Consumer MUSS zur Kennzeichnung der Dokumente, die für die ePA des Versicherten eingestellt
 werden, die in Tab_DM_ePA_KTR_Metadatenkennzeichnungen für den Dokumententyp aufgeführten Metadaten setzen.
 
-Tabelle 5: Tab_DM_ePA_KTR_Metadatenkennzeichnungen
+Tabelle 6: Tab_DM_ePA_KTR_Metadatenkennzeichnungen
 
 |=======================================================================================================================|
 |Dokumententyp            |Kategorienname                  |Metadatum                 |Metadatum                        |
@@ -1545,7 +1585,7 @@ der Struktur eines Dokuments ist am Format Code erkennbar.
 Das Primärsystem, ePA-Dokumentenverwaltung und das ePA-Frontend des Versicherten, welche IHE ITI XDS-Metadaten
 verarbeiten, MÜSSEN jedem strukturierten Dokument einen von drei Sammlungstypen zuweisen:
 
-Tabelle 6: TAB_DM_EPA_Sammlungstypen
+Tabelle 7: TAB_DM_EPA_Sammlungstypen
 
 |=======================================================================================================================|
 |Sammlungstyp            |Definition                                                                                    |
@@ -1660,7 +1700,7 @@ Produkttypen und Komponenten, die Ereignisse in einem Protokoll hinzufügen, MÜ
 als AuditMessage gemäß der XML-Schemafestlegung für http://ws.gematik.de/fa/phrext/v1.0 gemäß [healthcare-security-
 audit.xsd] mit folgendem Inhalt hinzufügen:
 
-Tabelle 7: Logische Objektstruktur des Protokolls nach § 291a SGB V inkl. Verwaltungsprotokoll für PHR:ProtocolEntryTyp
+Tabelle 8: Logische Objektstruktur des Protokolls nach § 291a SGB V inkl. Verwaltungsprotokoll für PHR:ProtocolEntryTyp
 
 |=======================================================================================================================|
 |Protokollattribu|Feld in der Audit Message                                           |Belegung                         |
@@ -1717,7 +1757,7 @@ Nicht vorbelegte Protokollattribute werden ggf. durch Anforderungen zu einzelnen
 ePA-Produkttypen und Komponenten, die Ereignisse in einem Protokoll hinzufügen, MÜSSEN im Protokolleintrag für die
 jeweils aufgerufene Operation die Event Codes und den Display Name gemäß der folgenden Tabelle verwenden:
 
-Tabelle 8: Event Codes für Protokollereignisse
+Tabelle 9: Event Codes für Protokollereignisse
 
 |=======================================================================================================================|
 |Operation                                                               |EventID.code |EventID.displayName             |
@@ -2188,7 +2228,7 @@ wird.
 
 Die folgende XML-Struktur für einen Container mit Arztbrief nach § 383 SGB V wird festgelegt (vgl. [PHR_Common.xsd]):
 
-Tabelle 9: XML-Struktur für Arztbrief nach § 291f SGB V
+Tabelle 10: XML-Struktur für Arztbrief nach § 291f SGB V
 
 |=========================================================================================================================|
 |Element-, Attribut- oder Textknoten  |Opt.   |Nutzungsvorgabe                                                            |
@@ -2217,7 +2257,7 @@ Primärsysteme ePA [gemILF_PS_ePA] enthalten. 
 Hinweis: Neue Nutzergruppen, die im Folgenden noch nicht berücksichtigt sind, sollten sich nach Vorbild der vorliegenden
 Vorschläge eine verkürzte Ansicht bilden. Neue Nutzergruppen werden schrittweise auch explizit Berücksichtigung finden.
 
-Tabelle 10: Value Set authorRole
+Tabelle 11: Value Set authorRole
 
 |==========================================================================================================================|
 |Code   |Anzeigename                  |Code-System           |Arzt   |Zahnarzt  |Krankenhaus   |Apotheke     |Versicherter |
@@ -2274,7 +2314,7 @@ Tabelle 10: Value Set authorRole
 |105    |Kostenträgervertreter        |                      |       |          |              |             |x            |
 |==========================================================================================================================|
 
-Tabelle 11: Value Set authorSpecialty
+Tabelle 12: Value Set authorSpecialty
 
 |==========================================================================================================================|
 |Code   |Anzeigename                        |Code-System            |Arzt    |Zahnarzt|Krankenhaus  |Apotheke |Versicherter|
@@ -3211,7 +3251,7 @@ weiterhin das Code-System "S_BAR2_WBO" durch ePA-Produkttypen, welche IHE ITI XD
 unterstützt werden. Für das Value Set "SubmissionSet.authorSpecialty" gilt dies analog. Neue Dokumente oder
 SubmissionSets dürfen nicht mehr mit Codes aus "S_BAR2_WBO" gekennzeichnet werden. 
 
-Tabelle 12: Value Set classCode
+Tabelle 13: Value Set classCode
 
 |===========================================================================================================================|
 |Code   |Anzeigename                    |Code-System                 |Arzt |Zahnarzt |Krankenhaus   |Apotheke  |Versicherter|
@@ -3257,7 +3297,7 @@ Tabelle 12: Value Set classCode
 |VID    |Videodaten                     |                            |x    |x        |x             |x         |x           |
 |===========================================================================================================================|
 
-Tabelle 13: Value Set confidentialityCode
+Tabelle 14: Value Set confidentialityCode
 
 |===========================================================================================================================|
 |Code  |Anzeigename                   |Code-System                  |Arzt |Zahnarzt |Krankenhaus   |Apotheke  |Versicherter |
@@ -3290,7 +3330,7 @@ Tabelle 13: Value Set confidentialityCode
 |PN    |übliche Vertraulichkeit       |                             |     |         |              |          |             |
 |===========================================================================================================================|
 
-Tabelle 14: Value Set eventCodeList
+Tabelle 15: Value Set eventCodeList
 
 |=========================================================================================================================|
 |Code                            |Anzeigename            |Code-System        |Arzt|Zahnarzt|Kranken-|Apotheke |Versicherte|
@@ -3389,7 +3429,7 @@ Tabelle 14: Value Set eventCodeList
 |E400                            |Virtual Encounter      |                   |x   |x       |x       |         |x          |
 |=========================================================================================================================|
 
-Tabelle 15: Value Set healthcareFacilityTypeCode
+Tabelle 16: Value Set healthcareFacilityTypeCode
 
 |==========================================================================================================================|
 |Code  |Anzeigename           |Code-System                               |Arzt |Zahnarzt |Kranken- |Apotheke  |Versicherter|
@@ -3458,7 +3498,7 @@ Tabelle 15: Value Set healthcareFacilityTypeCode
 |VER   |Versicherungsträger   |                                          |     |         |         |          |x           |
 |==========================================================================================================================|
 
-Tabelle 16: Value Set practiceSettingCode
+Tabelle 17: Value Set practiceSettingCode
 
 |===========================================================================================================================|
 |Code     |Anzeigename                     |Code-System        |Arzt   |Zahnarzt    |Kranken   |Apotheke    |Versicherter   |
@@ -3678,7 +3718,7 @@ Tabelle 16: Value Set practiceSettingCode
 |PST      |Psychotherapie                  |                   |x      |            |x         |            |x              |
 |===========================================================================================================================|
 
-Tabelle 17: Value Set typeCode
+Tabelle 18: Value Set typeCode
 
 |==========================================================================================================================|
 |Code   |Anzeigename                      |Code-System                |Arzt |Zahnarzt  |Kranken-  |Apotheke  |Versicherter |
