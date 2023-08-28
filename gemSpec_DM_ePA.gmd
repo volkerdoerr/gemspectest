@@ -3,11 +3,11 @@ Elektronische Gesundheitskarte und Telematikinfrastruktur
 Datenmodell ePA
 
 |------------------------------|
-|Version        |1.51.0        |
+|Version        |1.51.1        |
 |---------------|--------------|
 |Revision       |548770        |
 |---------------|--------------|
-|Stand          |25.07.2022    |
+|Stand          |17.08.2022    |
 |---------------|--------------|
 |Status         |freigegeben   |
 |---------------|--------------|
@@ -60,6 +60,9 @@ Dokumentenhistorie
 |--------|------------|-----------|-------------------------------------------------------------------|-------------------|
 |1.51.0  |25.07.22    |           |Änderungsliste ePA_Maintenance_22.2, Hinweis zur DiGA,             |gematik            |
 |        |            |           | redaktionell: diskriminierungsfreie Sprache (Black-/Whitelist)    |                   |
+|--------|------------|-----------|-------------------------------------------------------------------|-------------------|
+|1.51.1  |17.08.22    |           |Anpassung zur Einarbeitung Änderungsliste ePA_Maintenance_22.2 nach|gematik            |
+|        |            |           |weiteren Abstimmungen                                              |                   |
 |=========================================================================================================================|
 
 ## Inhaltsverzeichnis
@@ -237,7 +240,7 @@ Die Spalten der unten dargestellten, tabellarischen Übersichten für die Metada
      Workflow relevanten Metadatenattribute angezeigt werden, um die Komplexität für den Versicherten gering zu halten.
      Veränderbar gestaltete Metadatenattribute müssen mit sinnvollen Default-Werten vor belegt werden.
 
-### A_14760-17 - Nutzungsvorgaben für die Verwendung von XDS-Metadaten (MUSS)
+### A_14760-18 - Nutzungsvorgaben für die Verwendung von XDS-Metadaten (MUSS)
 
 Das Primärsystem, das ePA-Frontend des Versicherten sowie das Fachmodul ePA KTR-Consumer als XDS-Akteur "Document
 Source" MÜSSEN zur Registrierung von Dokumenten in der ePA-Dokumentenverwaltung die nachstehenden Nutzungsvorgaben für
@@ -319,20 +322,20 @@ Tabelle 1: Nutzungsvorgaben für Metadatenattribute XDS
 |                    |     |    |     |     |                     |mit dem Code System Name "ePA-Vertraulichkeit"       |    |
 |                    |     |    |     |     |                     |definiert.<br>Es MUSS für die gewünschte             |    |
 |                    |     |    |     |     |                     |Vertraulichkeitsstufe des Dokumentes einer der Codes |    |
-|                    |     |    |     |     |                     |Code = "N", Display Name = "normal",          Code = |    |
-|                    |     |    |     |     |                     |"R", Display Name = "vertraulich" oder          Code |    |
-|                    |     |    |     |     |                     |= "V", Display Name = "streng vertraulich"  aus dem  |    |
-|                    |     |    |     |     |                     |Code System 2.16.840.1.113883.5.25 (siehe auch       |    |
+|                    |     |    |     |     |                     |Code = "N", Display Name = "normal",         Code =  |    |
+|                    |     |    |     |     |                     |"R", Display Name = "vertraulich" oder         Code =|    |
+|                    |     |    |     |     |                     |"V", Display Name = "streng vertraulich" aus dem Code|    |
+|                    |     |    |     |     |                     |System 2.16.840.1.113883.5.25 (siehe auch            |    |
 |                    |     |    |     |     |                     |[gemSpec_Voc_ePA]) gesetzt werden.<br><br>Nur noch   |    |
 |                    |     |    |     |     |                     |von ePA1-Clientsystemen während der Migration von    |    |
 |                    |     |    |     |     |                     |ePA1 zu ePA2 zu verwenden sind:<br> Code = "LEI",    |    |
 |                    |     |    |     |     |                     |Display Name = "Dokument einer                       |    |
-|                    |     |    |     |     |                     |Leistungserbringerinstitution"<br>          Code =   |    |
+|                    |     |    |     |     |                     |Leistungserbringerinstitution"<br>         Code =    |    |
 |                    |     |    |     |     |                     |"KTR", Display Name = "Dokument eines Kostenträgers" |    |
-|                    |     |    |     |     |                     |<br>          Code = "PAT", Display Name = "Dokument |    |
-|                    |     |    |     |     |                     |eines Versicherten"<br>          Code = "LEÄ",       |    |
-|                    |     |    |     |     |                     |Display Name="Leistungserbringeräquivalentes Dokument|    |
-|                    |     |    |     |     |                     |eines Versicherten oder Kostenträgers"  Während der  |    |
+|                    |     |    |     |     |                     |<br>         Code = "PAT", Display Name = "Dokument  |    |
+|                    |     |    |     |     |                     |eines Versicherten"<br>         Code = "LEÄ", Display|    |
+|                    |     |    |     |     |                     |Name="Leistungserbringeräquivalentes Dokument eines  |    |
+|                    |     |    |     |     |                     |Versicherten oder Kostenträgers" Während der         |    |
 |                    |     |    |     |     |                     |Migration von ePA1 zu ePA2 werden die vorgenannten   |    |
 |                    |     |    |     |     |                     |ConfidentialityCodes gemäß                           |    |
 |                    |     |    |     |     |                     |[gemSpec_Dokumentenverwaltung#5.4.3] auf             |    |
@@ -483,7 +486,7 @@ Tabelle 1: Nutzungsvorgaben für Metadatenattribute XDS
 |                    |n]   |0]  |0]   |0]   |zum Patienten im     |2.3.2.23] genügen.                                   |    |
 |                    |     |    |     |     |Quellsystem          |                                                     |    |
 |--------------------|-----|----|-----|-----|---------------------|-----------------------------------------------------|----|
-|title               |[1.. |[1..|[0.. |[1.. |Titel des Dokuments  |Der Wert MUSS den Formatvorgaben  aus [IHE-ITI-TF3#4.|X   |
+|title               |[0.. |[1..|[0.. |[0.. |Titel des Dokuments  |Der Wert MUSS den Formatvorgaben  aus [IHE-ITI-TF3#4.|X   |
 |                    |1]   |1]  |0]   |1]   |                     |2.3.2.24] genügen.                                   |    |
 |--------------------|-----|----|-----|-----|---------------------|-----------------------------------------------------|----|
 |typeCode            |[1.. |[1..|[0.. |[1.. |Art des Dokuments    |Der Wert MUSS einem Code des in [gemSpec_Voc_ePA]    |X   |
@@ -1446,9 +1449,6 @@ Das Primärsystem sowie die ePA-Produkttypen, welche IHE ITI XDS-Metadaten verar
 das Metadatenattribut DocumentEntry. eventCodeList gemäß des in [gemSpec_Voc_ePA] definierten Value Sets
 für DocumentEntry.eventCodeList berücksichtigen. [<=]
 
-Diese soeben gelisteten Codes stammen aus DICOM Teil 16, Context Group 29 "Acquisition Modality" (Value Set 1.2.840.
-10008.6.1.19, Version "20180605", gekürzt um Nichtbildverfahren).  
-
 ## 2.1.4.3.6 Gesonderte Kennzeichnung eines Dokuments als Versicherteninformation
 
 Für die Kenntlichmachung von Dokumenten von Leistungserbringern, die vorrangig der Information von Versicherten dienen,
@@ -1719,146 +1719,146 @@ jeweils aufgerufene Operation die Event Codes und den Display Name gemäß der f
 
 Tabelle 8: Event Codes für Protokollereignisse
 
-|========================================================================================================================|
-|Operation                                                                |EventID.code |EventID.displayName             |
-|=========================================================================|=============|================================|
-|I_Authentication_Insurant::loginCreateToken                              |PHR-110      |Login des Versicherten          |
-|                                                                         |             |(Authentisierung)               |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authentication_Insurant::logoutToken                                   |PHR-112      |Logout des Versicherten         |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authentication_Insurant::getAuditEvents                                |PHR-120      |Abruf des Zugriffsprotokolls    |
-|                                                                         |             |(Teil 1/3) aus der privaten     |
-|                                                                         |             |Umgebung                        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authentication_Insurant::getSignedAuditEvents                          |PHR-121      |Abruf des signierten            |
-|                                                                         |             |Zugriffsprotokolls (Teil 1/3)   |
-|                                                                         |             |aus der privaten Umgebung       |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Insurant::getAuthorizationKey                            |PHR-220      |Login des Versicherten/Vertreter|
-|                                                                         |             |(Abruf der Berechtigung)        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization::getAuthorizationKey                                     |PHR-230      |Login aus der ärztlichen        |
-|                                                                         |             |Umgebung, einer DiGA oder eines |
-|                                                                         |             |Kostenträgers                   |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management::putAuthorizationKey                          |PHR-310      |Erteilung der Berechtigung aus  |
-|                                                                         |             |der ärztlichen Umgebung         |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::putAuthorizationKey                 |PHR-410      |Erteilung der Berechtigung aus  |
-|                                                                         |             |der privaten Umgebung           |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::deleteAuthorizationKey              |PHR-420      |Löschen der Berechtigung aus der|
-|                                                                         |             |privaten Umgebung               |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|Interner Prozess Löschen veralteter Berechtigungen                       |PHR-421      |Automatisches Löschen veralteter|
-|                                                                         |             |Berechtigungen durch das        |
-|                                                                         |             |Aktensystem                     |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::replaceAuthorizationKey             |PHR-430      |Aktualisierung der Berechtigung |
-|                                                                         |             |aus der privaten Umgebung       |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::getAuditEvents                      |PHR-440      |Abruf des Zugriffsprotokolls    |
-|                                                                         |             |(Teil 2/3) aus der privaten     |
-|                                                                         |             |Umgebung                        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant:: getSignedAuditEvents               |PHR-441      |Abruf des signierten            |
-|                                                                         |             |Zugriffsprotokolls (Teil 2/3)   |
-|                                                                         |             |aus der privaten Umgebung       |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::putNotificationInfo                 |PHR-450      |Aktualisierung der              |
-|                                                                         |             |Benachrichtigungsadresse aus der|
-|                                                                         |             |privaten Umgebung               |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|Interner Prozess Support E-Mailadresse                                   |PHR-451      |Änderung E-Mailadresse          |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::getNotificationInfo                 |PHR-452      |Abfrage der                     |
-|                                                                         |             |Benachrichtigungsadresse aus der|
-|                                                                         |             |privaten Umgebung               |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::getAuthorizationList                |PHR-460      |Abruf der Liste der berechtigten|
-|                                                                         |             |Kontonutzer                     |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|Interner Prozess Geräteverwaltung                                        |PHR-470      |Geräteverwaltung                |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::startKeyChange                      |PHR-480      |Initialer Schritt zum Start     |
-|                                                                         |             |eines Umschlüsselungsvorgangs   |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Authorization_Management_Insurant::finishKeyChange                     |PHR-482      |Initialer Schritt zum Abschluss |
-|                                                                         |             |des Umschlüsselungsvorgangs     |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management::CrossGatewayDocumentProvide                       |PHR-510      |Hinzufügen eines Dokuments aus  |
-|                                                                         |             |der ärztlichen Umgebung oder    |
-|                                                                         |             |einer DiGA                      |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management::CrossGatewayQuery                                 |PHR-520      |Suchanfrage aus der ärztlichen  |
-|                                                                         |             |Umgebung                        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management::RemoveDocuments                                   |PHR-530      |Löschen eines Dokuments aus     |
-|                                                                         |             |der ärztlichen Umgebung.<br><br>|
-|                                                                         |             |Hinweis (nicht protokolliert):  |
-|                                                                         |             |in ePA2.0 entfallen             |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management::CrossGatewayRetrieve                              |PHR-540      |Abruf eines Dokuments aus       |
-|                                                                         |             |der ärztlichen Umgebung         |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management::RestrictedUpdateDocumentSet                       |PHR-550      |Markierung eines Dokuments      |
-|                                                                         |             |als leistungserbringeräquivalent|
-|                                                                         |             |aus der ärztlichen Umgebung<br> |
-|                                                                         |             |<br>Hinweis (nicht              |
-|                                                                         |             |protokolliert): in ePA2.0       |
-|                                                                         |             |entfallen                       |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management::RemoveMetadata                                    |PHR-560      |Löschen von Dokumenten oder     |
-|                                                                         |             |Ordnern aus der ärztlichen      |
-|                                                                         |             |Umgebung                        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management_Insurant::<br>ProvideAndRegisterDocumentSet-b      |PHR-610      |Hinzufügen eines Dokuments aus  |
-|                                                                         |             |der privaten Umgebung           |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management_Insurant::RegistryStoredQuery                      |PHR-620      |Suchanfrage aus der privaten    |
-|                                                                         |             |Umgebung                        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management_Insurant::RemoveDocuments                          |PHR-630      |Löschen eines Dokuments aus     |
-|                                                                         |             |der privaten Umgebung. <br><br> |
-|                                                                         |             |Hinweis (nicht protokolliert):  |
-|                                                                         |             |in ePA2.0 entfallen             |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management_Insurant::RetrieveDocumentSet                      |PHR-640      |Abruf eines Dokuments aus       |
-|                                                                         |             |der privaten Umgebung           |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Account_Management_Insurant::SuspendAccount                            |PHR-650      |Starten des Aktenkontowechsels  |
-|                                                                         |             |zu einem neuen Anbieter aus der |
-|                                                                         |             |privaten Umgebung               |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Account_Management_Insurant::ResumeAccount                             |PHR-660      |Abschluss des Aktenkontowechsels|
-|                                                                         |             |zu einem neuen Anbieter aus der |
-|                                                                         |             |privaten Umgebung               |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Account_Management_Insurant::GetAuditEvents                            |PHR-670      |Abruf des Zugriffsprotokolls    |
-|                                                                         |             |(Teil 3/3) aus der privaten     |
-|                                                                         |             |Umgebung                        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I _Account_Management_Insurant::GetSignedAuditEvents                     |PHR-671      |Abruf des signierten            |
-|                                                                         |             |Zugriffsprotokolls (Teil 3/3)   |
-|                                                                         |             |aus der privaten Umgebung       |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management_Insurant::RemoveMetadata                           |PHR-680      |Löschen von Dokumenten, Ordnern |
-|                                                                         |             |aus der privaten Umgebung       |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management_Insurant::RestrictedUpdateDocumentSet              |PHR-690      |Änderungen der                  |
-|                                                                         |             |Vertraulichkeitsstufe von       |
-|                                                                         |             |Dokumenten aus der privaten     |
-|                                                                         |             |Umgebung                        |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|I_Document_Management_Insurance::<br>ProvideAndRegisterDocumentSet-b     |PHR-710      |Hinzufügen eines Dokuments aus  |
-|                                                                         |             |der Kostenträger-Umgebung       |
-|-------------------------------------------------------------------------|-------------|--------------------------------|
-|Interner Prozess: Rollback während des Umschlüsselungsvorgangs in        |PHR-850      |Initialer Schritt zum Abbruch   |
-|Komponente Authorisierung                                                |             |des Umschlüsselungsvorgangs     |
-|                                                                         |             |(Wiederherstellung des alten    |
-|                                                                         |             |Schlüsselmaterials)             |
-|========================================================================================================================|
+|=======================================================================================================================|
+|Operation                                                               |EventID.code |EventID.displayName             |
+|========================================================================|=============|================================|
+|I_Authentication_Insurant::loginCreateToken                             |PHR-110      |Login des Versicherten          |
+|                                                                        |             |(Authentisierung)               |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authentication_Insurant::logoutToken                                  |PHR-112      |Logout des Versicherten         |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authentication_Insurant::getAuditEvents                               |PHR-120      |Abruf des Zugriffsprotokolls    |
+|                                                                        |             |(Teil 1/3) aus der privaten     |
+|                                                                        |             |Umgebung                        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authentication_Insurant::getSignedAuditEvents                         |PHR-121      |Abruf des signierten            |
+|                                                                        |             |Zugriffsprotokolls (Teil 1/3)   |
+|                                                                        |             |aus der privaten Umgebung       |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Insurant::getAuthorizationKey                           |PHR-220      |Login des Versicherten/Vertreter|
+|                                                                        |             |(Abruf der Berechtigung)        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization::getAuthorizationKey                                    |PHR-230      |Login aus der ärztlichen        |
+|                                                                        |             |Umgebung, einer DiGA oder eines |
+|                                                                        |             |Kostenträgers                   |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management::putAuthorizationKey                         |PHR-310      |Erteilung der Berechtigung aus  |
+|                                                                        |             |der ärztlichen Umgebung         |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::putAuthorizationKey                |PHR-410      |Erteilung der Berechtigung aus  |
+|                                                                        |             |der privaten Umgebung           |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::deleteAuthorizationKey             |PHR-420      |Löschen der Berechtigung aus der|
+|                                                                        |             |privaten Umgebung               |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|Interner Prozess Löschen veralteter Berechtigungen                      |PHR-421      |Automatisches Löschen veralteter|
+|                                                                        |             |Berechtigungen durch das        |
+|                                                                        |             |Aktensystem                     |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::replaceAuthorizationKey            |PHR-430      |Aktualisierung der Berechtigung |
+|                                                                        |             |aus der privaten Umgebung       |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::getAuditEvents                     |PHR-440      |Abruf des Zugriffsprotokolls    |
+|                                                                        |             |(Teil 2/3) aus der privaten     |
+|                                                                        |             |Umgebung                        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant:: getSignedAuditEvents              |PHR-441      |Abruf des signierten            |
+|                                                                        |             |Zugriffsprotokolls (Teil 2/3)   |
+|                                                                        |             |aus der privaten Umgebung       |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::putNotificationInfo                |PHR-450      |Aktualisierung der              |
+|                                                                        |             |Benachrichtigungsadresse aus der|
+|                                                                        |             |privaten Umgebung               |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|Interner Prozess Support E-Mailadresse                                  |PHR-451      |Änderung E-Mailadresse          |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::getNotificationInfo                |PHR-452      |Abfrage der                     |
+|                                                                        |             |Benachrichtigungsadresse aus der|
+|                                                                        |             |privaten Umgebung               |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::getAuthorizationList               |PHR-460      |Abruf der Liste der berechtigten|
+|                                                                        |             |Kontonutzer                     |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|Interner Prozess Geräteverwaltung                                       |PHR-470      |Geräteverwaltung                |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::startKeyChange                     |PHR-480      |Initialer Schritt zum Start     |
+|                                                                        |             |eines Umschlüsselungsvorgangs   |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Authorization_Management_Insurant::finishKeyChange                    |PHR-482      |Initialer Schritt zum Abschluss |
+|                                                                        |             |des Umschlüsselungsvorgangs     |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management::CrossGatewayDocumentProvide                      |PHR-510      |Hinzufügen eines Dokuments aus  |
+|                                                                        |             |der ärztlichen Umgebung oder    |
+|                                                                        |             |einer DiGA                      |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management::CrossGatewayQuery                                |PHR-520      |Suchanfrage aus der ärztlichen  |
+|                                                                        |             |Umgebung                        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management::RemoveDocuments                                  |PHR-530      |Löschen eines Dokuments aus     |
+|                                                                        |             |der ärztlichen Umgebung.<br><br>|
+|                                                                        |             |Hinweis (nicht protokolliert):  |
+|                                                                        |             |in ePA2.0 entfallen             |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management::CrossGatewayRetrieve                             |PHR-540      |Abruf eines Dokuments aus       |
+|                                                                        |             |der ärztlichen Umgebung         |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management::RestrictedUpdateDocumentSet                      |PHR-550      |Markierung eines Dokuments      |
+|                                                                        |             |als leistungserbringeräquivalent|
+|                                                                        |             |aus der ärztlichen Umgebung<br> |
+|                                                                        |             |<br>Hinweis (nicht              |
+|                                                                        |             |protokolliert): in ePA2.0       |
+|                                                                        |             |entfallen                       |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management::RemoveMetadata                                   |PHR-560      |Löschen von Dokumenten oder     |
+|                                                                        |             |Ordnern aus der ärztlichen      |
+|                                                                        |             |Umgebung                        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management_Insurant::<br>ProvideAndRegisterDocumentSet-b     |PHR-610      |Hinzufügen eines Dokuments aus  |
+|                                                                        |             |der privaten Umgebung           |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management_Insurant::RegistryStoredQuery                     |PHR-620      |Suchanfrage aus der privaten    |
+|                                                                        |             |Umgebung                        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management_Insurant::RemoveDocuments                         |PHR-630      |Löschen eines Dokuments aus     |
+|                                                                        |             |der privaten Umgebung. <br><br> |
+|                                                                        |             |Hinweis (nicht protokolliert):  |
+|                                                                        |             |in ePA2.0 entfallen             |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management_Insurant::RetrieveDocumentSet                     |PHR-640      |Abruf eines Dokuments aus       |
+|                                                                        |             |der privaten Umgebung           |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Account_Management_Insurant::SuspendAccount                           |PHR-650      |Starten des Aktenkontowechsels  |
+|                                                                        |             |zu einem neuen Anbieter aus der |
+|                                                                        |             |privaten Umgebung               |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Account_Management_Insurant::ResumeAccount                            |PHR-660      |Abschluss des Aktenkontowechsels|
+|                                                                        |             |zu einem neuen Anbieter aus der |
+|                                                                        |             |privaten Umgebung               |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Account_Management_Insurant::GetAuditEvents                           |PHR-670      |Abruf des Zugriffsprotokolls    |
+|                                                                        |             |(Teil 3/3) aus der privaten     |
+|                                                                        |             |Umgebung                        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I _Account_Management_Insurant::GetSignedAuditEvents                    |PHR-671      |Abruf des signierten            |
+|                                                                        |             |Zugriffsprotokolls (Teil 3/3)   |
+|                                                                        |             |aus der privaten Umgebung       |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management_Insurant::RemoveMetadata                          |PHR-680      |Löschen von Dokumenten, Ordnern |
+|                                                                        |             |aus der privaten Umgebung       |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management_Insurant::RestrictedUpdateDocumentSet             |PHR-690      |Änderungen der                  |
+|                                                                        |             |Vertraulichkeitsstufe von       |
+|                                                                        |             |Dokumenten aus der privaten     |
+|                                                                        |             |Umgebung                        |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|I_Document_Management_Insurance::<br>ProvideAndRegisterDocumentSet-b    |PHR-710      |Hinzufügen eines Dokuments aus  |
+|                                                                        |             |der Kostenträger-Umgebung       |
+|------------------------------------------------------------------------|-------------|--------------------------------|
+|Interner Prozess: Rollback während des Umschlüsselungsvorgangs in       |PHR-850      |Initialer Schritt zum Abbruch   |
+|Komponente Authorisierung                                               |             |des Umschlüsselungsvorgangs     |
+|                                                                        |             |(Wiederherstellung des alten    |
+|                                                                        |             |Schlüsselmaterials)             |
+|=======================================================================================================================|
 
 [<=]
 
